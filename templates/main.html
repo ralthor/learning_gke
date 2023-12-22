@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Key-Value Store</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>Key-Value Store</h1>
+    <form id="key-value-form">
+      <label for="key">Key:</label><br />
+      <input type="text" id="key" name="key" /><br />
+      <label for="value">Value:</label><br />
+      <input type="text" id="value" name="value" /><br />
+      <button type="button" onclick="store()">Store</button>
+      <button type="button" onclick="retrieve()">Retrieve</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+      function store() {
+        var key = $("#key").val();
+        var value = $("#value").val();
+        $.get(`/store?key=${key}&value=${value}`, function (data) {
+          $("#result").html(`Stored: ${key} = ${value}`);
+        });
+      }
+
+      function retrieve() {
+        var key = $("#key").val();
+        $.get(`/retrieve?key=${key}`, function (data) {
+          $("#result").html(`Retrieved: ${data.key} = ${data.value}`);
+        });
+      }
+    </script>
+  </body>
+</html>
