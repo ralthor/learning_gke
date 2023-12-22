@@ -1,4 +1,4 @@
-.PHONY: build run stop rm restart
+.PHONY: build run-docker up up-build up-log stop-docker down rm-docker restart restart-docker status
 
 build: 
 	docker-compose build
